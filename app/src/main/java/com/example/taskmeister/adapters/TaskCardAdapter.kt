@@ -35,7 +35,7 @@ class TaskCardAdapter : RecyclerView.Adapter<TaskCardAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         if (position % 2 == 1) {
-            holder.cardView.setCardBackgroundColor(Color.parseColor("#DF3435"))
+            holder.cardView.setCardBackgroundColor(Color.parseColor("#363638"))
         } else {
             holder.cardView.setCardBackgroundColor(Color.parseColor("#392B85"))
         }
