@@ -15,6 +15,10 @@
             app:destination="@id/tasksFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:popEnterAnim="@android:anim/slide_in_left" />
+        <action
+            android:id="@+id/action_homeFragment_to_createListFragment"
+            app:destination="@id/createListFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
     </fragment>
     <fragment
         android:id="@+id/tasksFragment"
@@ -25,5 +29,21 @@
             android:id="@+id/action_tasksFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:enterAnim="@anim/fragment_open_enter" />
+        <argument
+            android:name="task_header"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/createListFragment"
+        android:name="com.example.taskmeister.CreateListFragment"
+        android:label="fragment_create_list"
+        tools:layout="@layout/fragment_create_list" >
+        <action
+            android:id="@+id/action_createListFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
+        <action
+            android:id="@+id/action_createListFragment_to_tasksFragment"
+            app:destination="@id/tasksFragment" />
     </fragment>
 </navigation>

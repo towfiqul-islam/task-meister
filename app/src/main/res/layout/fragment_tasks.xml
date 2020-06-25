@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,13 +14,13 @@
             android:layout_height="24dp"
             android:layout_marginTop="36dp"
             android:background="@drawable/ic_notes_24px"
-            app:layout_constraintEnd_toStartOf="@+id/view2"
+            app:layout_constraintEnd_toStartOf="@+id/delete_list"
             app:layout_constraintHorizontal_bias="0.079"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
-            android:id="@+id/view2"
+            android:id="@+id/delete_list"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="36dp"
@@ -32,24 +33,26 @@
             android:id="@+id/task_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="76dp"
-            android:layout_marginEnd="208dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="24dp"
             android:fontFamily="@font/roboto_bold"
             android:text="My Tasks"
             android:textColor="@color/primary_text_dark"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.114"
+            app:layout_constraintStart_toEndOf="@+id/progressBar"
             app:layout_constraintTop_toBottomOf="@+id/go_home" />
 
         <ProgressBar
             android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginTop="80dp"
-            android:progressTint="#DD9091"
-            app:layout_constraintEnd_toStartOf="@+id/task_title"
-            app:layout_constraintHorizontal_bias="0.482"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="88dp"
+            android:progress="50"
+            android:progressDrawable="@drawable/circle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/go_home" />
 
@@ -62,15 +65,15 @@
             android:text="2 of 7 tasks"
             android:textColor="@color/primary_gray_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.212"
+            app:layout_constraintHorizontal_bias="0.274"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/task_title" />
 
         <View
-            android:id="@+id/view3"
+            android:id="@+id/divider"
             android:layout_width="340dp"
             android:layout_height="1dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:background="@color/primary_gray_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -81,12 +84,13 @@
             android:id="@+id/tasks_list_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view3"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/add_new_task_text"
+            tools:listitem="@layout/task_item_view_2" />
 
         <View
             android:id="@+id/add_new_item"
@@ -96,8 +100,42 @@
             android:background="@drawable/ic_add_final"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.977"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tasks_list_2"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <View
+            android:id="@+id/add_check_box"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="53dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/ic_check_box"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/add_new_task_text"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/add_new_task_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="48dp"
+            android:ems="10"
+            android:enabled="true"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="add a task"
+            android:inputType="textPersonName"
+            android:textColor="@color/primary_text_dark"
+            android:textColorHighlight="@color/primary_text_dark"
+            android:textColorLink="@color/primary_body_text"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/add_check_box"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,12 +10,14 @@
 
         <TextView
             android:id="@+id/task_item_2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/roboto"
-            android:text="Buy milk"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Finish project"
             android:textColor="@color/primary_text_dark"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,13 +31,12 @@
             android:id="@+id/checkbox_done_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="48dp"
             android:buttonTint="@color/primary_text_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.216" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
