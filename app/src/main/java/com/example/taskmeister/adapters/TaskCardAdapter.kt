@@ -1,19 +1,15 @@
 package com.example.taskmeister.adapters
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.view.forEach
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.taskmeister.HomeFragment
 import com.example.taskmeister.HomeFragmentDirections
 import com.example.taskmeister.R
 import com.example.taskmeister.TaskViewModel
@@ -22,7 +18,8 @@ import com.example.taskmeister.database.TaskHeader
 
 
 class TaskCardAdapter(
-    datas: List<Task> = listOf(),
+    datas: List<TaskHeader> = listOf(),
+    val lifeCycleOwner: LifecycleOwner,
     val viewModel: TaskViewModel
 ) :
     RecyclerView.Adapter<TaskCardAdapter.ViewHolder>() {
@@ -60,22 +57,28 @@ class TaskCardAdapter(
         // setting header text for each card
         holder.taskName.text = item.taskHeader
 
+
         // adding recyclerView adapter for each card
-        var tasks = mutableListOf<Task>()
-        data.forEach {
-            if (item.taskHeader == it.taskHeader) {
-                tasks.add(it)
-                holder.itemLists.adapter = TaskItemAdapter(datas = tasks, viewModel = viewModel)
+
+        val tasks = viewModel.getIndividualTasks(item.id)
+
+        tasks.observe(lifeCycleOwner, Observer {
+            it?.let {
+                val adapter = TaskItemAdapter(viewModel = viewModel)
+                holder.itemLists.adapter = adapter
+                adapter.data = it
             }
-        }
+        })
 
 
         // navigating to taskFragment from card
         holder.cardView.setOnClickListener { view: View ->
-            view.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTasksFragment(
-                item.headerId,
-                item.taskHeader
-            ))
+            view.findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToTasksFragment(
+                    item.id,
+                    item.taskHeader
+                )
+            )
         }
 
     }

@@ -15,8 +15,8 @@ import androidx.room.*
 )
 data class Task(
     @PrimaryKey(autoGenerate = true) val id: Int=0,
-     val headerId: Int,
-     val itemName: String,
-     var isCompleted: Boolean = false,
-     val taskHeader: String = ""
+    val headerId: Int,
+    val itemName: String,
+    var isCompleted: Boolean = false,
+    val taskHeader: String = ""
 )

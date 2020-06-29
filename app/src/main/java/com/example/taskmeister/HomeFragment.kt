@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
 
 
         val manager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        val adapter = TaskCardAdapter(viewModel = taskViewModel)
+        val adapter = TaskCardAdapter(lifeCycleOwner = viewLifecycleOwner, viewModel = taskViewModel)
 
         binding.tasksList.layoutManager = manager
         binding.tasksList.adapter = adapter

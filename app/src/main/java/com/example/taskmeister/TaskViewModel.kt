@@ -30,7 +30,10 @@ class TaskViewModel (
     // Getting tasks
    val tasks = database.getAllTasks(header_id)
 
-    val allTasks = database.getAll()
+    fun getIndividualTasks(header_id: Int): LiveData<List<Task>> {
+        return database.getAllTasks(header_id)
+    }
+
 
     // Deleting tasks
     private suspend fun delete(key: Int) {
