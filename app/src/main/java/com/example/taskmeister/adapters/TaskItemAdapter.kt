@@ -7,11 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taskmeister.HomeFragmentDirections
 import com.example.taskmeister.R
+import com.example.taskmeister.TaskViewModel
 import com.example.taskmeister.database.Task
 
-class TaskItemAdapter(val datas: List<Task> = listOf(), val flag: Boolean = false):
+class TaskItemAdapter(datas: List<Task> = listOf(),
+                      val flag: Boolean = false,
+                      val viewModel: TaskViewModel):
     RecyclerView.Adapter<TaskItemAdapter.ViewHolder>() {
 
     var data = datas
@@ -58,28 +63,29 @@ class TaskItemAdapter(val datas: List<Task> = listOf(), val flag: Boolean = fals
 
         if (flag) {
             holder.itemName2?.setOnClickListener {
-                toggleTaskItem(holder.checkBox2!!, item)
+                toggleTaskItem(holder.checkBox2!!, item, viewModel)
                 changeItemView(item, holder.checkBox2!!, holder.itemName2, flag)
 
             }
 
             holder.checkBox2?.setOnCheckedChangeListener { buttonView, isChecked ->
-
                 item.isCompleted = holder.checkBox2.isChecked
+                viewModel.onUpdateTask(item)
                 changeItemView(item, holder.checkBox2, holder.itemName2!!, flag)
 
             }
         } else {
-            holder.itemName?.setOnClickListener {
-                toggleTaskItem(holder.checkBox!!, item)
-                changeItemView(item, holder.checkBox!!, holder.itemName, flag)
+            holder.itemName?.setOnClickListener {view: View ->
+                view.findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToTasksFragment(item.headerId, item.taskHeader)
+                )
 
             }
 
             holder.checkBox?.setOnCheckedChangeListener { buttonView, isChecked ->
-
-                item.isCompleted = holder.checkBox.isChecked
-                changeItemView(item, holder.checkBox, holder.itemName!!, flag)
+                buttonView.findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToTasksFragment(item.headerId, item.taskHeader)
+                )
             }
         }
         // Setting taskItem view based on homeFragment and taskFragment end <--
@@ -89,14 +95,16 @@ class TaskItemAdapter(val datas: List<Task> = listOf(), val flag: Boolean = fals
 
 
     // Method to toggle between completed and non-completed items
-    private fun toggleTaskItem(checkBox: CheckBox, item: Task) {
+    private fun toggleTaskItem(checkBox: CheckBox, item: Task, viewModel: TaskViewModel) {
         if (checkBox.isChecked) {
             item.isCompleted = false
             checkBox.isChecked = item.isCompleted
+            viewModel.onUpdateTask(item)
 
         } else {
             item.isCompleted = true
             checkBox.isChecked = item.isCompleted
+            viewModel.onUpdateTask(item)
 
         }
 

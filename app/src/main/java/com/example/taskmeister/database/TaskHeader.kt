@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "headers")
 data class TaskHeader(
     @PrimaryKey(autoGenerate = true)
-    val headerId: Int =0,
+    val id: Int = 0,
     val taskHeader: String
-    )
+)

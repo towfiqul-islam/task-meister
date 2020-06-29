@@ -11,7 +11,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskmeister.adapters.TaskCardAdapter
 import com.example.taskmeister.database.TaskDatabase
-import com.example.taskmeister.databinding.FragmentCreateListBinding
 import com.example.taskmeister.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -38,22 +37,30 @@ class HomeFragment : Fragment() {
             TaskViewModel::class.java
         )
 
-        val cardManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        val cardAdapter = TaskCardAdapter()
 
-        binding.tasksList.layoutManager = cardManager
-        binding.tasksList.adapter = cardAdapter
+
+        val manager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        val adapter = TaskCardAdapter(viewModel = taskViewModel)
+
+        binding.tasksList.layoutManager = manager
+        binding.tasksList.adapter = adapter
 
         taskViewModel.taskHeads.observe(viewLifecycleOwner, Observer {
             it?.let {
-                cardAdapter.data = it
+                adapter.data = it
             }
         })
 
-        // navigate to create list fragment
+
         binding.createListBtn.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_homeFragment_to_createListFragment)
+            view.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCreateListFragment())
         }
+
+
+
+
+
+
 
 
         return binding.root

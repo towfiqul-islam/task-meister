@@ -1,13 +1,16 @@
 package com.example.taskmeister
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.taskmeister.database.TaskDatabase
+import com.example.taskmeister.database.TaskHeader
 import com.example.taskmeister.databinding.FragmentCreateListBinding
 
 
@@ -42,13 +45,28 @@ class CreateListFragment : Fragment() {
 
         // Creating a new list
         binding.saveList.setOnClickListener { view: View ->
-            val taskHeader = binding.addTaskHeader.text.toString()
+            val headerText = binding.addTaskHeader.text.toString()
 
-            taskViewModel.onAddNewHeader(taskHeader)
+            if (headerText.isNotEmpty()) {
 
-            view.findNavController().navigate(
-                CreateListFragmentDirections.actionCreateListFragmentToTasksFragment(taskHeader)
-            )
+                taskViewModel.onAddNewHeader(headerText)
+                val headerId = taskViewModel.getHeaderId(headerText)
+
+                headerId.observe(viewLifecycleOwner, Observer {
+
+                    it?.let {
+                        view.findNavController().navigate(
+                            CreateListFragmentDirections.actionCreateListFragmentToTasksFragment(
+                                it,
+                                headerText
+                            )
+                        )
+                    }
+
+                })
+            }
+
+
         }
 
 

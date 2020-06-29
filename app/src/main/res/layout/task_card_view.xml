@@ -13,7 +13,8 @@
         android:layout_marginTop="100dp"
         android:layout_marginLeft="20dp"
         card_view:cardBackgroundColor="@color/purple"
-        card_view:cardCornerRadius="10dp">
+        card_view:cardCornerRadius="10dp"
+        >
 
         <TextView
             android:id="@+id/task_name"

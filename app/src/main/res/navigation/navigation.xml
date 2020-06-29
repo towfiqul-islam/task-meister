@@ -30,7 +30,10 @@
             app:destination="@id/homeFragment"
             app:enterAnim="@anim/fragment_open_enter" />
         <argument
-            android:name="task_header"
+            android:name="header_id"
+            app:argType="integer" />
+        <argument
+            android:name="header_name"
             app:argType="string" />
     </fragment>
     <fragment
