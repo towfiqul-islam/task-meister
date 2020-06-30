@@ -1,11 +1,15 @@
 package com.example.taskmeister.adapters
 
+import android.app.ActionBar
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.marginLeft
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -48,6 +52,7 @@ class TaskCardAdapter(
         val item = data[position]
 
         // changing card background on home screen
+
         if (position % 2 == 1) {
             holder.cardView.setCardBackgroundColor(Color.parseColor("#363638"))
         } else {

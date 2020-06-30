@@ -119,16 +119,16 @@ class TaskItemAdapter(datas: List<Task> = listOf(),
     ) {
         if (item.isCompleted && !flag) {
             itemName.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            itemName.setTextColor(Color.parseColor("#DF3435"))
+            itemName.setTextColor(Color.parseColor("#DD9091"))
             checkBox.visibility = View.INVISIBLE
 
         } else if (item.isCompleted && flag) {
             itemName.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            itemName.setTextColor(Color.parseColor("#DF3435"))
+            itemName.setTextColor(Color.parseColor("#DD9091"))
             checkBox.visibility = View.INVISIBLE
         } else if (!item.isCompleted && flag) {
             itemName.paintFlags = 0
-            itemName.setTextColor(Color.parseColor("#363638"))
+            itemName.setTextColor(Color.parseColor("#6d6d6d"))
             checkBox.visibility = View.VISIBLE
         } else {
             itemName.paintFlags = 0
